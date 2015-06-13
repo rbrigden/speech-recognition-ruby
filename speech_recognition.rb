@@ -39,7 +39,7 @@ class SpeechRecognition
 			response.nbest.first.each_pair do |key, value|
 				@result[key] = value
 			end 
-			@result["accuracies"] = create_accuracy_hash @result[:words], @result[scores]
+			@result[:accuracies] = create_accuracy_hash @result[:words], @result[:scores]
   		end
   	end
 
