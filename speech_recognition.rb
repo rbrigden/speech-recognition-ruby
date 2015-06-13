@@ -36,9 +36,10 @@ class SpeechRecognition
 			puts "#{e.message}"
 		else
 			# return the data 
-			@response = res.to_json
+			@response = res
   		end
   	end
+
 
 end
 
