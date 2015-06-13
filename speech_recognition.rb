@@ -12,14 +12,14 @@ class SpeechRecognition
 
 	attr_reader :client
 	attr_reader :scope
-	attr_reader :response
+	attr_reader :result
 
 	def initialize
 		id = ENV['ATT_KEY']
 		secret = ENV['ATT_SECRET']
 		@client = Auth::ClientCred.new('https://api.att.com', id, secret)
 		@scope = "SPEECH"
-		@response
+		@result = {}
 	end
 
 	def get_token
@@ -30,14 +30,33 @@ class SpeechRecognition
 	def recognize path_to_file
 		speech = Service::SpeechService.new('https://api.att.com', get_token)
 		begin
-			res = speech.toText(path_to_file)
+			response = speech.toText(path_to_file)
 		rescue Service::ServiceException => e
 			# Display any error returned codes 
 			puts "#{e.message}"
 		else
-			# return the data 
-			@response = res
+			# return the data in hash
+			response.nbest.first.each_pair do |key, value|
+				@result[key] = value
+			end 
+			@result["accuracies"] = create_accuracy_hash @result[:words], @result[scores]
   		end
+  	end
+
+  	def to_text
+  		@result[:hypothesis]
+  	end
+
+  	private
+
+  	def create_accuracy_hash words, scores
+  		arr = []
+  		words.each do |word|
+  			scores.each do |score|
+  				arr.push([word, score])
+  			end
+  		end
+  		Hash[arr]
   	end
 
 
