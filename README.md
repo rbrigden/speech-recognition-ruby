@@ -4,7 +4,7 @@ Speech recognition in Ruby using the AT&amp;T API.
 
 ## Requirements
 
-* Ruby 1.9.3 or higher (Ruby 2.1 recommended)
+* Ruby 1.9.3 or higher (Ruby 2.2 recommended)
 * AT&T Codekit (install below)
 * AT&T Developer API Credentials
 
