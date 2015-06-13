@@ -1,4 +1,5 @@
 require_relative 'speech_recognition'
 
 speech = SpeechRecognition.new
-puts speech.recognize "test.wav"
+speech.recognize "test.wav"
+puts speech.to_text
