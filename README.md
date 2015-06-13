@@ -31,7 +31,7 @@ Install the gem:
   
 ```
 
-####Enjoy!
+Enjoy!
   
 
 
