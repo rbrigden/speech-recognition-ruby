@@ -1,5 +1,6 @@
 # speech-recognition-ruby
-Speech recognition script in Ruby using the AT&amp;T API
+
+Speech recognition in Ruby using the AT&amp;T API. 
 
 ## Requirements
 
@@ -22,13 +23,41 @@ Install the gem:
 ## Example Usage
 
 ```ruby
-
+  # simple example to transcribe audio
+    
   require_relative 'speech_recognition'
 
+  # transcribe the audio
   speech = SpeechRecognition.new
   speech.recognize "test.wav"
   puts speech.to_text
   
+```
+...and with a little more detail
+
+```ruby
+    #retrieve other data from query, passed as hash
+    require_relative 'speech_recognition'
+    
+    # transcribe the audio
+    speech = SpeechRecognition.new
+    speech.recognize "test.wav"
+   
+    # retrieve result as hash
+    output = speech.result
+    
+    # get the output text
+    text = output[:hypothesis]
+    
+    # get the confidence of the recognition
+    confidence = output[:confidence]
+    
+    # get a hash of the words with their indidividual accuracies ( from 0 to 1 )
+    accuracies = output[:accuracies]
+    
+    # get language
+    lang = output[:language]
+
 ```
 
 Enjoy!
