@@ -12,8 +12,8 @@ class SpeechRecognition
 	attr_reader :scope
 
 	def initialize
-		id = ENV['API_KEY']
-		secret = ENV['API_SECRET']
+		id = ENV['ATT_KEY']
+		secret = ENV['ATT_SECRET']
 		@client = Auth::ClientCred.new('https://api.att.com', id, secret)
 		@scope = "SPEECH"
 	end
